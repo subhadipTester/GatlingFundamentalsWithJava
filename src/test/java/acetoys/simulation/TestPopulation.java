@@ -16,14 +16,14 @@ public static PopulationBuilder instantUsers =
         TestScenario.defaultLoadTest.injectOpen(
 
                 nothingFor(5),
-                atOnceUsers(10));
+                atOnceUsers(USER_COUNT));
 
 public static PopulationBuilder rampUsers =
 
         TestScenario.defaultLoadTest.injectOpen(
 
                 nothingFor(5),
-                rampUsers(10).during(20)
+                rampUsers(USER_COUNT).during(RAMP_DURATION)
         );
 
 public static PopulationBuilder complexOpenModelInjectionProfile =
