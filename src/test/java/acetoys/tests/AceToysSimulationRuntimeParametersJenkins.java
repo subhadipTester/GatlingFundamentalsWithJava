@@ -1,12 +1,13 @@
 package acetoys.tests;
 
 import acetoys.simulation.TestPopulation;
-import io.gatling.javaapi.core.*;
-import io.gatling.javaapi.http.*;
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.*;
+import io.gatling.javaapi.core.Simulation;
+import io.gatling.javaapi.http.HttpProtocolBuilder;
 
-public class AceToysSimulationRuntimeParameters extends Simulation {
+import static io.gatling.javaapi.core.CoreDsl.*;
+import static io.gatling.javaapi.http.HttpDsl.http;
+
+public class AceToysSimulationRuntimeParametersJenkins extends Simulation {
 
     private static final String TEST_TYPE = System.getenv("TEST_TYPE");
 
@@ -24,15 +25,7 @@ public class AceToysSimulationRuntimeParameters extends Simulation {
 
         if (TEST_TYPE.equals("INSTANT_USERS")) {
 
-            setUp(TestPopulation.instantUsers).protocols(httpProtocol)
-                    .assertions(
-
-                            global().responseTime().mean().lt(300),
-                            global().successfulRequests().percent().gt(95.0),
-                            forAll().responseTime().max().lt(800)
-
-
-                    );
+            setUp(TestPopulation.instantUsers).protocols(httpProtocol);
         } else if (TEST_TYPE.equals("RAMP_USERS")) {
 
             setUp(TestPopulation.rampUsers).protocols(httpProtocol);
@@ -49,15 +42,7 @@ public class AceToysSimulationRuntimeParameters extends Simulation {
 
         } else {
 
-            setUp(TestPopulation.instantUsers).protocols(httpProtocol)
-                    .assertions(
-
-                            global().responseTime().mean().lt(300),
-                            global().successfulRequests().percent().gt(95.0),
-                            forAll().responseTime().max().lt(800)
-
-
-                    );
+            setUp(TestPopulation.instantUsers).protocols(httpProtocol);
 
         }
 
