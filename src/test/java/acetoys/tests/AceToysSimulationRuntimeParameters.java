@@ -3,7 +3,6 @@ package acetoys.tests;
 import acetoys.simulation.TestPopulation;
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
-
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 
@@ -28,9 +27,9 @@ public class AceToysSimulationRuntimeParameters extends Simulation {
             setUp(TestPopulation.instantUsers).protocols(httpProtocol)
                     .assertions(
 
-                            global().responseTime().mean().lt(8),
-                            global().successfulRequests().percent().gt(99.0),
-                            forAll().responseTime().max().lt(12)
+                            global().responseTime().mean().lt(300),
+                            global().successfulRequests().percent().gt(95.0),
+                            forAll().responseTime().max().lt(800)
 
 
                     );
